@@ -72,5 +72,11 @@
     "inputFiles": [
       "bower_components/angular-loading-bar/build/loading-bar.css"
     ]
+  },
+  {
+    "outputFileName": "script/checkout.min.js",
+    "inputFiles": [
+      "script/checkout.js"
+    ]
   }
 ]

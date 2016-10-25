@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Parcels2Go.com</title>
+    <base href="/">
+
+    <!--jQuery-->
+    <script src="script/external/jquery.min.js"></script>
+
+    <!--Bootstrap-->
+    <script src="script/external/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+
+    <script>
+        var checkOut = {
+            updateBasketTotal: function (delivery) {
+                var cost = 0;
+                $("[data-subTotal]").each(function () {
+                    cost += parseFloat($(this).attr("data-subTotal"));
+                });
+                $("#lblSubTotal").text("£" + cost.toFixed(2));
+                $("#lblDelivery").text("£" + delivery.price.toFixed(2));
+                $("#lblTotal").text("£" + (cost + delivery.price).toFixed(2));
+            }
+        };
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Parcel2Go</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Checkout</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis ac risus sit amet commodo. Vivamus posuere massa blandit justo lobortis accumsan. Donec odio velit, aliquam ac facilisis quis, facilisis id libero. Suspendisse potenti.</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Your Basket</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Plane To Las Vegas</td>
+                            <td>3</td>
+                            <td>£987.12</td>
+                            <td data-subTotal="2961.36">£2961.36</td>
+                        </tr>
+                        <tr>
+                            <td>Hotel MGM Grand</td>
+                            <td>3</td>
+                            <td>£1267.14</td>
+                            <td data-subTotal="3801.42">£3801.42</td>
+                        </tr>
+                        <tr>
+                            <td>AWS reInvent Tickets</td>
+                            <td>3</td>
+                            <td>£876.12</td>
+                            <td data-subTotal="2628.36">£2628.36</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Delivery</h2>
+                <input type="hidden" id="hdnP2GOutput" />
+                <div id="p2gDelivery"></div>
+                <script>
+                    window.p2gConfig =
+                    {
+                        Insured: true,
+                        Contribution: 5.67,
+                        Couriers: ["Parcelforce", "TNT", "UPS", "DPD"],
+                        Types: ["Collection"],
+                        RenderId: "p2gDelivery",
+                        OutputId: "hdnP2GOutput",
+                        Token: "xxxxxx",
+                        Parcels: {
+                            CollectionAddress: { Country: "GBR", Postcode: "DN37 9QS" },
+                            DeliveryAddress: { Country: "GBR", Postcode: "LL28 5NE" },
+                            Parcels: [{ Weight: 12, Height: 12, Width: 12, Length: 12, Value: 150 }]
+                        },
+                        Update: checkOut.updateBasketTotal
+                    };
+                </script>
+                <script src="script/checkout.js"></script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Total</h2>
+                <div>Subtotal <span id="lblSubTotal"></span></div>
+                <div>Delivery <span id="lblDelivery"></span></div>
+                <h3>Total <span id="lblTotal"></span></h3>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2016 Company, Inc.</p>
+        </footer>
+    </div>
+</body>
+</html>
