@@ -3,19 +3,28 @@
 
     <div class="row">
         <div class="col-md-9">
-            <form>
+            <form name="frmOrder">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="well">
                             <h3>Customer Details</h3>
                             <label class="control-label">Forename</label>
-                            <input type="text" required class="form-control" ng-model="order.Order.CustomerDetails.Forename" />
+                            <input type="text" required class="form-control" ng-model="order.Order.CustomerDetails.Forename" name="forname" />
+                            <div class="text-danger" ng-show="frmOrder.forname.$invalid">
+                                <span ng-show="frmOrder.forname.$error.required">Forename is required.</span>
+                            </div>
 
                             <label class="control-label">Surname</label>
-                            <input type="text" required class="form-control" ng-model="order.Order.CustomerDetails.Surname" />
+                            <input type="text" required class="form-control" ng-model="order.Order.CustomerDetails.Surname" name="surname" />
+                            <div class="text-danger" ng-show="frmOrder.surname.$invalid">
+                                <span ng-show="frmOrder.surname.$error.required">Surname is required.</span>
+                            </div>
 
                             <label class="control-label">Email</label>
-                            <input type="email" required class="form-control" ng-model="order.Order.CustomerDetails.Email" />
+                            <input type="email" required class="form-control" ng-model="order.Order.CustomerDetails.Email" name="email" />
+                            <div class="text-danger" ng-show="frmOrder.email.$invalid">
+                                <span ng-show="frmOrder.email.$error.required">Name is required.</span>
+                            </div>
 
                             <label class="control-label">Opt Out</label>
                             <input type="checkbox" ng-model="order.Order.CustomerDetails.OptOutOfEmails" />

@@ -37,17 +37,27 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <form class="form">
+                    <form class="form" name="frmAddress">
 
                         <div ng-show="data.State.View == null">
                             <label class="control-label">Name</label>
-                            <input type="text" required class="form-control" ng-model="data.ContactName" />
+                            <input type="text" required class="form-control" ng-model="data.ContactName" name="name" />
+                            <div class="text-danger" ng-show="frmAddress.name.$invalid">
+                                <span ng-show="frmAddress.name.$error.required">Name is required.</span>
+                            </div>
 
                             <label class="control-label">Email</label>
-                            <input type="text" required class="form-control" ng-model="data.Email" />
+                            <input type="email" required class="form-control" ng-model="data.Email" name="email" />
+                            <div class="text-danger" ng-show="frmAddress.email.$invalid">
+                                <span ng-show="frmAddress.email.$error.required">Email is required.</span>
+                                <span ng-show="frmAddress.email.$error.email">Invalid email address.</span>
+                            </div>
 
                             <label class="control-label">Phone</label>
-                            <input type="text" required class="form-control" ng-model="data.Phone" />
+                            <input type="text" required class="form-control" ng-model="data.Phone" name="phone" />
+                            <div class="text-danger" ng-show="frmAddress.phone.$invalid">
+                                <span ng-show="frmAddress.phone.$error.required">Phone is required.</span>
+                            </div>
                         </div>
 
 
@@ -61,24 +71,43 @@
                             <input type="text" class="form-control" ng-model="data.Organisation" />
 
                             <label class="control-label">Property</label>
-                            <input type="text" required class="form-control" ng-model="data.Property" />
+                            <input type="text" required class="form-control" ng-model="data.Property" name="property" />
+                            <div class="text-danger" ng-show="frmAddress.property.$invalid">
+                                <span ng-show="frmAddress.property.$error.required">Property is required.</span>
+                            </div>
 
                             <label class="control-label">Street</label>
-                            <input type="text" required class="form-control" ng-model="data.Street" />
+                            <input type="text" required class="form-control" ng-model="data.Street" name="street" />
+                            <div class="text-danger" ng-show="frmAddress.street.$invalid">
+                                <span ng-show="frmAddress.street.$error.required">Street is required.</span>
+                            </div>
 
                             <label class="control-label">Town</label>
-                            <input type="text" required class="form-control" ng-model="data.Town" />
+                            <input type="text" required class="form-control" ng-model="data.Town" name="town" />
+                            <div class="text-danger" ng-show="frmAddress.town.$invalid">
+                                <span ng-show="frmAddress.town.$error.required">Town is required.</span>
+                            </div>
 
                             <label class="control-label">Locality</label>
                             <input type="text" class="form-control" ng-model="data.Locality" />
 
                             <label class="control-label">County</label>
-                            <input type="text" required class="form-control" ng-model="data.County" />
+                            <input type="text" required class="form-control" ng-model="data.County" name="county" />
+                            <div class="text-danger" ng-show="frmAddress.county.$invalid">
+                                <span ng-show="frmAddress.county.$error.required">County is required.</span>
+                            </div>
 
                             <label class="control-label">Postcode</label>
-                            <input type="text" required class="form-control" ng-model="data.Postcode" />
+                            <input type="text" required class="form-control" ng-model="data.Postcode" name="postcode" />
+                            <div class="text-danger" ng-show="frmAddress.postcode.$invalid">
+                                <span ng-show="frmAddress.postcode.$error.required">Postcode is required.</span>
+                            </div>
+
                             <br />
                             <button class="btn btn-default" ng-click="done()" type="button">Save</button>
+                        </div>
+                        <div class="text-danger" ng-show="frmAddress.$invalid">
+                            Please fill in all required fields
                         </div>
                     </form>
                 </div>

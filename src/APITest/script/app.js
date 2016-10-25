@@ -243,7 +243,7 @@ p2GoApp.directive('address', ['TokenService', 'p2gDataContext', function (TokenS
             }
 
             scope.gatherAddressOptions = function () {
-                if (scope.delivery == "true") {
+                if (scope.delivery === "true") {
                     p2gDataContext.getCustomerDeliveryAddresses().success(function (data) {
                         scope.setAddressOptions(data);
                     });
@@ -275,7 +275,7 @@ p2GoApp.directive('address', ['TokenService', 'p2gDataContext', function (TokenS
             };
             scope.done = function () {
                 scope.data.State.View = null;
-                if (scope.data.Property && scope.data.Street && scope.data.Postcode) {
+                if (scope.data.Property && scope.data.Street && scope.data.Postcode && scope.data.County) {
                     scope.data.State.HasAddress = true;
                 }
             };
@@ -295,7 +295,7 @@ p2GoApp.directive('address', ['TokenService', 'p2gDataContext', function (TokenS
                     scope.data.Organisation = address.Organisation;
                     scope.data.Postcode = address.Postcode;
 
-                    if (scope.data.Property && scope.data.Street && scope.data.Postcode) {
+                    if (scope.data.Property && scope.data.Street && scope.data.Postcode && scope.data.County) {
                         scope.data.State = { View: null, HasAddress: true };
                     }
                     else {
