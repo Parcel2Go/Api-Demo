@@ -1,0 +1,100 @@
+﻿<div id="login" class="container">
+    <h1>Parcels</h1>
+    <div class="row">
+        <div class="col-md-9">
+            <form ng-submit="nextStep()" class="form-horizontal">
+                <div ng-repeat="item in order.Quote.Parcels">
+                    <div class="well">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Estimated Value</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">&pound;</span>
+                                            <input class="form-control" type="number" required step="0.1" ng-model="item.EstimatedValue" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="row form-group">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Contents</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" required ng-model="item.ContentsSummary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="row form-group">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Height</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input class="form-control" type="number" required step="0.1" ng-model="item.Height" />
+                                            <span class="input-group-addon">cm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Width</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input class="form-control" type="number" required step="0.1" ng-model="item.Width" />
+                                            <span class="input-group-addon">cm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Length</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input class="form-control" type="number" required step="0.1" ng-model="item.Length" />
+                                            <span class="input-group-addon">cm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Weight</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input class="form-control" type="number" required step="0.1" ng-model="item.Weight" />
+                                            <span class="input-group-addon">kg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="btn btn-default" type="submit">Next</button>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div sidebar></div>
+        </div>
+    </div>
+</div>

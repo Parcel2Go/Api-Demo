@@ -1,0 +1,102 @@
+﻿<div id="results" class="container">
+    <h1>Quotes</h1>
+    <div class="row">
+        <div ng-show="loading" class="page-load">
+            <i class="fa fa-spinner animated infinite rotateIn"></i>
+            <span>Loading...</span>
+        </div>
+        <div ng-hide="loading" ng-repeat="quote in order.Results.Quotes | orderBy:'TotalPrice'">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="well result">
+                    <div class="row title">
+                        <div class="col-sm-4 gutter-right-0" ng-show="quote.Service.Links.Service">
+                            <img src="{{quote.Service.Links.Imagelarge}}" alt="{{quote.Service.CourierName}}"/>
+                        </div>
+                        <div class="col-sm-8">
+                            <h1>{{quote.Service.CourierName}}</h1>
+                            <span>{{quote.Service.CollectionType}}</span>
+                        </div>
+                    </div>
+                    <div class="row price">
+                        <div class="col-md-12">
+                            <h2>Including £20 protection</h2>
+                        </div>
+                        <div class="col-sm-6 gutter-right-0">
+                            <h4>{{quote.TotalPriceWithCover | currency : "£"}} exc VAT</h4>
+                            <h5>{{quote.TotalPriceWithCoverExVat | currency : "£"}} inc VAT</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-success" ng-click="placeOrder(quote,true)">
+                                Buy This Service
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row price">
+                        <div class="col-md-12">
+                            <h2>Don't need protection?</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>{{quote.TotalPrice | currency : "£"}} exc VAT</h4>
+                            <h5>{{quote.TotalPriceExVat | currency : "£"}} inc VAT</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-default" ng-click="placeOrder(quote,false)">
+                                Buy This Service
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row icons">
+                        <div class="col-md-4">
+                            <a ng-show="quote.Service.CollectionType == 'Locker'" class="quote-info-button" href="javascript:void(0)">
+                                <span class="fa-stack fa-1x fa-fw">
+                                    <i class="fa fa-square-o fa-stack-1x"></i>
+                                    <i class="fa fa-unlock-alt fa-stack-1x fa-square-unlock"></i>
+                                </span>
+                                <span class="quote-option-text hidden-xs hidden-sm">
+                                    Locker Service
+                                </span>
+                            </a>
+                            <a ng-show="quote.Service.CollectionType == 'Collection'" class="quote-info-button" href="javascript:void(0)">
+                                <i class="fa fa-truck fa-fw"></i>
+                                <span class="quote-option-text hidden-xs hidden-sm">
+                                    Collection Service
+                                </span>
+                            </a>
+                            <a ng-show="quote.Service.CollectionType == 'Shop'" class="quote-info-button" href="javascript:void(0)">
+                                <i class="fa fa-building-o fa-fw"></i>
+                                <span class="quote-option-text hidden-xs hidden-sm">
+                                    Local Drop Off
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a ng-show="quote.Service.IsPrinterRequired" class="quote-info-button" href="javascript:void(0)">
+                                <i class="fa fa-print fa-fw"></i>
+                                <span class="quote-option-text hidden-xs hidden-sm">
+                                    Printer Required
+                                </span>
+                            </a>
+                            <a ng-hide="quote.Service.IsPrinterRequired" class="quote-info-button" href="javascript:void(0)">
+                                <span class="fa-stack fa-1x fa-fw">
+                                    <i class="fa fa-print fa-stack-1x"></i>
+                                    <i class="fa fa-times fa-stack-1x fa-printer-times"></i>
+                                </span>
+                                <span class="quote-option-text hidden-xs hidden-sm">
+                                    Printer Optional
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="quote-info-button" href="javascript:void(0)">
+                                <i class="fa fa-info-circle fa-fw"></i>
+                                <span class="quote-option-text hidden-xs hidden-sm">
+                                    More<br>Info
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

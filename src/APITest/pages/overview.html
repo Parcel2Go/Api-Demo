@@ -1,0 +1,35 @@
+﻿<div id="results" class="container">
+    <h1>Overview</h1>
+    <div ng-show="loading" class="page-load">
+        <i class="fa fa-spinner animated infinite rotateIn"></i>
+        <span>Loading...</span>
+    </div>
+    <div ng-hide="loading">
+        <div class="row" ng-show="order.Overview && !order.Payment">
+            <div class="col-md-12">
+                <div class="well">
+                    <h1>Total Price Ex Vat - &pound;<span counter ng-model="order.Overview.TotalPriceExVat">{{order.Overview.TotalPriceExVat}}</span></h1>
+                    <h1>Total Price - &pound;<span counter ng-model="order.Overview.TotalPrice">{{order.Overview.TotalPrice}}</span></h1>
+
+                    <form ng-submit="pay()">
+                        <button type="submit" class="btn btn-default">
+                            Pay
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="order.Overview && order.Payment">
+            <div class="col-md-12">
+                <div class="well">
+                    <form ng-submit="labels()">
+                        <button type="submit" class="btn btn-default">
+                            Labels
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

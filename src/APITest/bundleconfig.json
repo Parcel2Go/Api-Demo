@@ -1,0 +1,76 @@
+[
+  {
+    "outputFileName": "script/app.js",
+    "inputFiles": [
+      "script/config.js",
+      "script/p2g.js",
+      "script/services/token.js",
+      "script/services/order.js",
+      "script/factory/dataContext.js",
+      "script/directives/googleplaces.js",
+      "script/directives/address.js",
+      "script/directives/sidebar.js",
+      "script/directives/counter.js",
+      "script/controllers/token.js",
+      "script/controllers/results.js",
+      "script/controllers/main.js",
+      "script/controllers/parcel.js",
+      "script/controllers/order.js",
+      "script/controllers/login.js",
+      "script/controllers/quote.js",
+      "script/controllers/overview.js"
+    ]
+  },
+  {
+    "outputFileName": "script/external/bootstrap.js",
+    "inputFiles": [
+      "bower_components/bootstrap/dist/js/bootstrap.js"
+    ]
+  },
+  {
+    "outputFileName": "script/external/moment.js",
+    "inputFiles": [
+      "bower_components/moment/min/moment.min.js"
+    ]
+  },
+  {
+    "outputFileName": "script/external/jquery.js",
+    "inputFiles": [
+      "bower_components/jquery/dist/jquery.js"
+    ]
+  },
+  {
+    "outputFileName": "script/external/angular.js",
+    "inputFiles": [
+      "bower_components/angular/angular.js",
+      "bower_components/angular-animate/angular-animate.js",
+      "bower_components/angular-cache/dist/angular-cache.js",
+      "bower_components/angular-loading-bar/build/loading-bar.js",
+      "bower_components/angular-route/angular-route.js"
+    ]
+  },
+  {
+    "outputFileName": "style/animate.css",
+    "inputFiles": [
+      "bower_components/animate.css/animate.css"
+    ]
+  },
+  {
+    "outputFileName": "style/fa.css",
+    "inputFiles": [
+      "bower_components/font-awesome/css/font-awesome.css"
+    ]
+  },
+  {
+    "outputFileName": "style/bootstrap.css",
+    "inputFiles": [
+      "bower_components/bootstrap/dist/css/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "style/angular.css",
+    "inputFiles": [
+      "bower_components/angular-loading-bar/build/loading-bar.css"
+    ]
+  }
+]

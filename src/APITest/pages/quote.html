@@ -1,0 +1,144 @@
+﻿<div id="quote" class="container">
+    <h1>Quote</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal" ng-submit="getQuote()">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Locations</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="row form-group">
+                                        <div class="col-sm-1">
+                                            <label class="control-label">From</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" ng-options="item.Iso3Code as item.Name for item in countries" ng-model="quote.CollectionAddress.Country"></select>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" placeholder="Optional Postcode" ng-model="quote.CollectionAddress.Postcode" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row form-group">
+                                        <div class="col-sm-1">
+                                            <label class="control-label">To</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" ng-options="item.Iso3Code as item.Name for item in countries" ng-model="quote.DeliveryAddress.Country"></select>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" placeholder="Optional Postcode" ng-model="quote.DeliveryAddress.Postcode" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Parcels</h3>
+                                </div>
+                            </div>
+                            <div ng-repeat="item in quote.Parcels track by $index" class="parcel" >
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="row form-group">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Height</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <input class="form-control" type="number" required step="0.1" ng-model="item.Height" />
+                                                    <span class="input-group-addon small">cm</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Width</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <input class="form-control"  type="number" required step="0.1" ng-model="item.Width" />
+                                                    <span class="input-group-addon small">cm</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Length</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <input class="form-control"  type="number" required step="0.1" ng-model="item.Length" />
+                                                    <span class="input-group-addon small">cm</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-2">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Weight</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="input-group">
+                                                    <input class="form-control"  type="number" required step="0.1" ng-model="item.Weight" />
+                                                    <span class="input-group-addon small">kg</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-1">
+                                        <button type="button" class="btn btn-default" ng-click="removeParcel($index)">
+                                            <i class="fa fa-minus" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-default" ng-click="addParcel()">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-default" type="submit">
+                            Get Quote &amp; Order
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

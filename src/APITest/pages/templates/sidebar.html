@@ -1,0 +1,17 @@
+﻿<div class="well sidebar">
+    <span class="title">
+        Your Quote
+        <img class="logo" ng-src="{{order.Service.Service.Links.Imagelarge}}" />
+    </span>
+    <div class="service" ng-show="order.Service">
+        <span class="name">{{order.Service.Service.CourierName}}</span>
+
+        <div ng-show="order.Service.Service.CollectionType === 'Collection'">
+            <span class="time">Collection : {{order.Service.Collection | date  : "dd/MM/y"}}</span>
+            <span class="time">Cutoff : {{cutOff}}</span>
+        </div>
+
+        <span class="price" ng-show="order.Quote.Upsells.indexOf('ExtendedBaseCover') === -1">Total {{order.Service.TotalPrice | currency:"£"}}</span>
+        <span class="price" ng-hide="order.Quote.Upsells.indexOf('ExtendedBaseCover') === -1">Total {{order.Service.TotalPriceWithCover | currency:"£"}}</span>
+    </div>
+</div>

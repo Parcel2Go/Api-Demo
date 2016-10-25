@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Parcels2Go.com</title>
+    <base href="/">
+
+    <!--jQuery-->
+    <script src="script/external/jquery.min.js"></script>
+    
+    <!--Bootstrap-->
+    <script src="script/external/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    
+    <!--Angular-->
+    <script src="script/external/angular.min.js"></script>
+    <link rel="stylesheet" href="style/angular.min.css" />
+
+    <!--Moment-->
+    <script src="script/external/moment.min.js"></script>
+
+    <!--FA-->
+    <link rel="stylesheet" href="style/fa.css">
+    
+    <!--Google-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8i6ReFjbIjxt_P59U671OZ4ecd4utpg&libraries=places"></script>
+    
+    <!--P2G-->
+    <script src="script/app.js"></script>
+    <link rel="stylesheet" href="style/style.css" />
+    
+    <!--Animation-->
+    <link rel="stylesheet" href="style/animate.min.css" />
+</head>
+<body class="p2g" ng-app="p2GoApp" ng-controller="mainController">
+    <div id="loading-bar-container" class="animated"></div>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <div ng-show="name" class="navbar-right navbar-form">
+                    <span>Hi {{name}}</span>
+                    <button type="button" class="btn btn-default" ng-click="signOut()">Sign out</button>
+                </div>
+                <div ng-hide="name" class="navbar-right navbar-form">
+                    <button type="button" class="btn btn-default" ng-click="signIn()">Sign up / in</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="main">
+        <div ng-view></div>
+    </div>
+</body>
+</html>

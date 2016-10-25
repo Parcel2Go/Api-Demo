@@ -1,0 +1,56 @@
+﻿<div id="results" class="container">
+    <h1>Order</h1>
+
+    <div class="row">
+        <div class="col-md-9">
+            <form>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <h3>Customer Details</h3>
+                            <label class="control-label">Forename</label>
+                            <input type="text" required class="form-control" ng-model="order.Order.CustomerDetails.Forename" />
+
+                            <label class="control-label">Surname</label>
+                            <input type="text" required class="form-control" ng-model="order.Order.CustomerDetails.Surname" />
+
+                            <label class="control-label">Email</label>
+                            <input type="email" required class="form-control" ng-model="order.Order.CustomerDetails.Email" />
+
+                            <label class="control-label">Opt Out</label>
+                            <input type="checkbox" ng-model="order.Order.CustomerDetails.OptOutOfEmails" />
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-repeat="item in order.Order.Items">
+
+                    <div ng-show="order.Service.Service.CollectionType === 'Collection'">
+                        <div address data="item.CollectionAddress" header="Collection Details" delivery="false"></div>
+                    </div>
+
+                    <div class="row" ng-show="order.Service.Service.CollectionType !== 'Collection'">
+                        <div class="col-sm-12">
+                            <div class="well">
+                                <h3>Dropoff Shops</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-repeat="parcel in item.Parcels">
+                        <div address data="parcel.DeliveryAddress" header="Delivery Details for {{parcel.ContentsSummary}}" delivery="true"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-default" ng-click="placeOrder()">Order</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <div sidebar></div>
+        </div>
+    </div>
+</div>

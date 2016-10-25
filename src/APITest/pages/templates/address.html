@@ -1,0 +1,88 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <button class="btn btn-default" type="button" ng-click="search()" ng-show="data.State.View == null || data.State.View == 'Edit'">Search</button>
+                        <button class="btn btn-default" type="button" ng-click="edit()" ng-show="data.State.View == null || data.State.View == 'Search'">Edit</button>
+                    </div>
+                    <h3>{{header}}</h3>
+                </div>
+            </div>
+
+            <div class="row" ng-show="data.State.AddressCollection">
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        <form class="form-horizontal">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label small">Select from a previous address</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control" ng-options="item.Id as item.Label for item in data.State.AddressCollection" ng-model="data.State.SelectedAddress"></select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="data.State.HasAddress">
+                <div class="col-md-12">
+                    <h5><i class="fa fa-address-card" aria-hidden="true"></i> {{data.ContactName}}</h5>
+                    <h5 class="small"><i class="fa fa-address-book" aria-hidden="true"></i> {{data.Property}} {{data.Street}} {{data.Postcode}}</h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form">
+
+                        <div ng-show="data.State.View == null">
+                            <label class="control-label">Name</label>
+                            <input type="text" required class="form-control" ng-model="data.ContactName" />
+
+                            <label class="control-label">Email</label>
+                            <input type="text" required class="form-control" ng-model="data.Email" />
+
+                            <label class="control-label">Phone</label>
+                            <input type="text" required class="form-control" ng-model="data.Phone" />
+                        </div>
+
+
+                        <div ng-show="data.State.View == 'Search'">
+                            <label class="control-label">Search</label>
+                            <input googleplace class="form-control" data="data" />
+                        </div>
+
+                        <div ng-show="data.State.View == 'Edit'">
+                            <label class="control-label">Organisation</label>
+                            <input type="text" class="form-control" ng-model="data.Organisation" />
+
+                            <label class="control-label">Property</label>
+                            <input type="text" required class="form-control" ng-model="data.Property" />
+
+                            <label class="control-label">Street</label>
+                            <input type="text" required class="form-control" ng-model="data.Street" />
+
+                            <label class="control-label">Town</label>
+                            <input type="text" required class="form-control" ng-model="data.Town" />
+
+                            <label class="control-label">Locality</label>
+                            <input type="text" class="form-control" ng-model="data.Locality" />
+
+                            <label class="control-label">County</label>
+                            <input type="text" required class="form-control" ng-model="data.County" />
+
+                            <label class="control-label">Postcode</label>
+                            <input type="text" required class="form-control" ng-model="data.Postcode" />
+                            <br />
+                            <button class="btn btn-default" ng-click="done()" type="button">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
