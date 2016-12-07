@@ -1,0 +1,9 @@
+﻿<div class="modal-header">
+    <h2>{{service.Name}}</h2>
+</div>
+<div class="modal-body">
+    <img ng-if="service.Links && service.Links.Imagelarge" ng-src="{{service.Links.Imagelarge}}" alt="{{service.Name}}" class="pull-right" />
+    <span ng-if="service.Overview" ng-bind-html="service.Overview"></span>
+    <span ng-if="!service.Overview && service.ShortDescriptions" ng-bind-html="service.ShortDescriptions"></span>
+    <br style="clear: both;" />
+</div>

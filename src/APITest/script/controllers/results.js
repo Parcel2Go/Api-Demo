@@ -1,4 +1,4 @@
-﻿p2GoApp.controller('resultsController', ['OrderService', '$scope', '$location', 'p2gDataContext', function (OrderService, $scope, $location, p2gDataContext) {
+﻿p2GoApp.controller('resultsController', ['OrderService', '$scope', '$location', 'p2gDataContext', '$uibModal', function (OrderService, $scope, $location, p2gDataContext, $modal) {
     $scope.loading = true;
     $scope.order = OrderService.get();
     $scope.order.Quote.Service = undefined;
@@ -32,4 +32,22 @@
         OrderService.set($scope.order);
         $location.path('/parcels');
     };
+
+    $scope.moreDetails = function (service) {
+        var modalInstance = $modal.open({
+            templateUrl: '/pages/serviceDetail.html',
+            controller: 'serviceModalController',
+            animation: true,
+            resolve: {
+                service: function () {
+                    return service;
+                }
+            }
+        });
+    };
 }]);
+
+p2GoApp.controller('serviceModalController', function ($uibModalInstance, $scope, service) {
+    console.log("Modal", service);
+    $scope.service = service;
+});

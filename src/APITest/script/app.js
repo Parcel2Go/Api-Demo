@@ -12,7 +12,7 @@ var config = {
         order: "https://www.parcel2go.com/api/orders"
     }
 };
-var p2GoApp = angular.module('p2GoApp', ['ngRoute', 'ngAnimate', 'angular-loading-bar', 'angular-cache']);
+var p2GoApp = angular.module('p2GoApp', ['ngRoute', 'ngAnimate', 'ngSanitize', 'angular-loading-bar', 'angular-cache', 'ui.bootstrap']);
 
 p2GoApp.config([
     'cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
@@ -365,7 +365,7 @@ p2GoApp.controller('tokenController', ['TokenService', '$location', function (To
     $location.url($location.path());
     $location.path('/');
 }]);
-p2GoApp.controller('resultsController', ['OrderService', '$scope', '$location', 'p2gDataContext', function (OrderService, $scope, $location, p2gDataContext) {
+p2GoApp.controller('resultsController', ['OrderService', '$scope', '$location', 'p2gDataContext', '$uibModal', function (OrderService, $scope, $location, p2gDataContext, $modal) {
     $scope.loading = true;
     $scope.order = OrderService.get();
     $scope.order.Quote.Service = undefined;
@@ -399,7 +399,25 @@ p2GoApp.controller('resultsController', ['OrderService', '$scope', '$location', 
         OrderService.set($scope.order);
         $location.path('/parcels');
     };
+
+    $scope.moreDetails = function (service) {
+        var modalInstance = $modal.open({
+            templateUrl: '/pages/serviceDetail.html',
+            controller: 'serviceModalController',
+            animation: true,
+            resolve: {
+                service: function () {
+                    return service;
+                }
+            }
+        });
+    };
 }]);
+
+p2GoApp.controller('serviceModalController', function ($uibModalInstance, $scope, service) {
+    console.log("Modal", service);
+    $scope.service = service;
+});
 p2GoApp.controller('mainController', ['TokenService', 'OrderService', '$scope', '$location', 'p2gDataContext', function (TokenService, OrderService, $scope, $location, p2gDataContext) {
 
     $scope.$on('cfpLoadingBar:started', function (event, data) {

@@ -1,4 +1,4 @@
-﻿var p2GoApp = angular.module('p2GoApp', ['ngRoute', 'ngAnimate', 'angular-loading-bar', 'angular-cache']);
+﻿var p2GoApp = angular.module('p2GoApp', ['ngRoute', 'ngAnimate', 'ngSanitize', 'angular-loading-bar', 'angular-cache', 'ui.bootstrap']);
 
 p2GoApp.config([
     'cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
