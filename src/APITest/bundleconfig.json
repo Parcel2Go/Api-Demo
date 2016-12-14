@@ -18,7 +18,8 @@
       "script/controllers/order.js",
       "script/controllers/login.js",
       "script/controllers/quote.js",
-      "script/controllers/overview.js"
+      "script/controllers/overview.js",
+      "script/controllers/dropshop.js"
     ]
   },
   {

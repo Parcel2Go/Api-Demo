@@ -41,17 +41,17 @@ body.p2g {
       body.p2g .navbar .navbar-brand img {
         height: 40px; }
   body.p2g .ng-scope.ng-enter {
-    -moz-animation: fadeIn 0.5s both ease-in;
-    -o-animation: fadeIn 0.5s both ease-in;
-    -webkit-animation: fadeIn 0.5s both ease-in;
-    animation: fadeIn 0.5s both ease-in;
-    z-index: 8888; }
+    /*-moz-animation: fadeIn 0.5s both ease-in;
+            -o-animation: fadeIn 0.5s both ease-in;
+            -webkit-animation: fadeIn 0.5s both ease-in;
+            animation: fadeIn 0.5s both ease-in;
+            z-index: 8888;*/ }
   body.p2g .ng-scope.ng-leave {
-    -moz-animation: fadeOut 0.1s both ease-in;
-    -o-animation: fadeOut 0.1s both ease-in;
-    -webkit-animation: fadeOut 0.1s both ease-in;
-    animation: fadeOut 0.1s both ease-in;
-    z-index: 9999; }
+    /*-moz-animation: fadeOut 0.1s both ease-in;
+            -o-animation: fadeOut 0.1s both ease-in;
+            -webkit-animation: fadeOut 0.1s both ease-in;
+            animation: fadeOut 0.1s both ease-in;
+            z-index: 9999;*/ }
   body.p2g .jumbotron {
     background-color: #1c8ccd;
     color: #ffffff; }
@@ -133,4 +133,91 @@ body.p2g {
       display: block;
       font-size: 130%;
       font-weight: bold; }
+  body.p2g #dropShopMapWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0; }
+    body.p2g #dropShopMapWrapper #dropShopMap {
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      position: absolute !important;
+      z-index: 10; }
+    body.p2g #dropShopMapWrapper #dropShopMenu {
+      position: absolute;
+      top: 0;
+      z-index: 11;
+      opacity: 0.7;
+      padding: 10px;
+      left: 100px; }
+      body.p2g #dropShopMapWrapper #dropShopMenu:hover {
+        opacity: 1; }
+      body.p2g #dropShopMapWrapper #dropShopMenu ul {
+        padding: 0;
+        margin: 0; }
+        body.p2g #dropShopMapWrapper #dropShopMenu ul li {
+          display: inline-block;
+          margin-left: 10px;
+          opacity: 0.7;
+          cursor: pointer; }
+          body.p2g #dropShopMapWrapper #dropShopMenu ul li.active {
+            opacity: 1; }
+          body.p2g #dropShopMapWrapper #dropShopMenu ul li img {
+            width: 50px; }
+    body.p2g #dropShopMapWrapper #dropShopResults {
+      position: absolute;
+      top: 35px;
+      z-index: 11;
+      padding: 10px;
+      right: 35px;
+      width: 25%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      border-radius: 30px;
+      max-height: calc(100% - 70px); }
+      body.p2g #dropShopMapWrapper #dropShopResults .result .close {
+        font-weight: bold;
+        cursor: pointer;
+        float: right;
+        color: #ffffff; }
+      body.p2g #dropShopMapWrapper #dropShopResults .result a {
+        color: #ffffff;
+        text-decoration: underline; }
+      body.p2g #dropShopMapWrapper #dropShopResults .result .service-logo {
+        height: 55px;
+        width: 55px;
+        background-position: 50%;
+        background-size: cover;
+        border-radius: 50%;
+        margin-right: 10px; }
+      body.p2g #dropShopMapWrapper #dropShopResults .result h1 {
+        margin-bottom: 30px; }
+      body.p2g #dropShopMapWrapper #dropShopResults .results {
+        padding: 0;
+        list-style: none; }
+        body.p2g #dropShopMapWrapper #dropShopResults .results li {
+          width: 48%;
+          margin: 0 1% 10px;
+          float: left;
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 10px;
+          height: 60px;
+          border-radius: 30px; }
+          body.p2g #dropShopMapWrapper #dropShopResults .results li .service-logo {
+            height: 40px;
+            width: 40px;
+            background-position: 50%;
+            background-size: cover;
+            border-radius: 50%;
+            float: left;
+            margin-right: 10px; }
+          body.p2g #dropShopMapWrapper #dropShopResults .results li span {
+            font-size: 80%;
+            display: block;
+            line-height: 14px; }
+            body.p2g #dropShopMapWrapper #dropShopResults .results li span:first-of-type {
+              font-weight: bold; }
 

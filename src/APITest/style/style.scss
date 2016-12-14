@@ -66,19 +66,19 @@ body.p2g {
 
     .ng-scope {
         &.ng-enter {
-            -moz-animation: fadeIn 0.5s both ease-in;
+            /*-moz-animation: fadeIn 0.5s both ease-in;
             -o-animation: fadeIn 0.5s both ease-in;
             -webkit-animation: fadeIn 0.5s both ease-in;
             animation: fadeIn 0.5s both ease-in;
-            z-index: 8888;
+            z-index: 8888;*/
         }
 
         &.ng-leave {
-            -moz-animation: fadeOut 0.1s both ease-in;
+            /*-moz-animation: fadeOut 0.1s both ease-in;
             -o-animation: fadeOut 0.1s both ease-in;
             -webkit-animation: fadeOut 0.1s both ease-in;
             animation: fadeOut 0.1s both ease-in;
-            z-index: 9999;
+            z-index: 9999;*/
         }
     }
 
@@ -218,6 +218,132 @@ body.p2g {
                 display: block;
                 font-size: 130%;
                 font-weight: bold;
+            }
+        }
+    }
+
+    #dropShopMapWrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        #dropShopMap {
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            position: absolute !important;
+            z-index: 10;
+        }
+
+        #dropShopMenu {
+            position: absolute;
+            top: 0;
+            z-index: 11;
+            opacity: 0.7;
+            padding: 10px;
+            left: 100px;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            ul {
+                padding: 0;
+                margin: 0;
+
+                li {
+                    display: inline-block;
+                    margin-left: 10px;
+                    opacity: 0.7;
+                    cursor: pointer;
+
+                    &.active {
+                        opacity: 1;
+                    }
+
+                    img {
+                        width: 50px;
+                    }
+                }
+            }
+        }
+
+        #dropShopResults {
+            position: absolute;
+            top: 35px;
+            z-index: 11;
+            padding: 10px;
+            right: 35px;
+            width: 25%;
+            background-color: rgba(0,0,0,0.5);
+            color: #ffffff;
+            border-radius: 30px;
+            max-height: calc(100% - 70px);
+
+            .result {
+                .close {
+                    font-weight: bold;
+                    cursor: pointer;
+                    float: right;
+                    color: #ffffff;
+                }
+
+                a {
+                    color: #ffffff;
+                    text-decoration: underline;
+                }
+
+                .service-logo {
+                    height: 55px;
+                    width: 55px;
+                    background-position: 50%;
+                    background-size: cover;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+
+                h1 {
+                    margin-bottom: 30px;
+                }
+            }
+
+
+            .results {
+                padding: 0;
+                list-style: none;
+
+                li {
+                    width: 48%;
+                    margin: 0 1% 10px;
+                    float: left;
+                    background-color: rgba(0,0,0,0.5);
+                    padding: 10px;
+                    height: 60px;
+                    border-radius: 30px;
+
+                    .service-logo {
+                        height: 40px;
+                        width: 40px;
+                        background-position: 50%;
+                        background-size: cover;
+                        border-radius: 50%;
+                        float: left;
+                        margin-right: 10px;
+                    }
+
+                    span {
+                        font-size: 80%;
+                        display: block;
+                        line-height: 14px;
+
+                        &:first-of-type {
+                            font-weight: bold;
+                        }
+                    }
+                }
             }
         }
     }

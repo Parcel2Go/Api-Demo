@@ -40,5 +40,10 @@ p2GoApp.config(function ($routeProvider, $locationProvider) {
         {
             templateUrl: 'pages/overview.html',
             controller: 'overviewController'
+        })
+        .when('/dropshops',
+        {
+            templateUrl: 'pages/dropshop.html',
+            controller: 'dropshopController'
         });
 });

@@ -13,6 +13,8 @@
     setDefaultHeader(TokenService.get());
 
     var data = {
+        getShops: getShops,
+        getServices : getServices,
         getCountryList: getCountryList,
         getQuote: getQuote,
         getOrder: getOrder,
@@ -51,7 +53,6 @@
     function getCountryList(refresh) {
         var deferred = $q.defer();
         var start = new Date().getTime();
-        var key = config.endPoints.countries;
         return $http.get(config.endPoints.countries, {
             cache: cache
         }).success(function (data) {
@@ -63,7 +64,6 @@
     function getCustomerDetails(refresh) {
         var deferred = $q.defer();
         var start = new Date().getTime();
-        var key = config.endPoints.countries;
         return $http.post(config.endPoints.customer, {
             cache: cache
         }).success(function (data) {
@@ -75,7 +75,6 @@
     function getCustomerDeliveryAddresses(refresh) {
         var deferred = $q.defer();
         var start = new Date().getTime();
-        var key = config.endPoints.countries;
         return $http.post(config.endPoints.deliveryAddresses, {
             cache: cache
         }).success(function (data) {
@@ -87,11 +86,33 @@
     function getCustomerCollectionAddresses(refresh) {
         var deferred = $q.defer();
         var start = new Date().getTime();
-        var key = config.endPoints.countries;
         return $http.post(config.endPoints.collectionAddresses, {
             cache: cache
         }).success(function (data) {
             console.log('Customer collection addresses resolved: ' + (new Date().getTime() - start) + 'ms');
+            deferred.resolve(data);
+        });
+    }
+
+    function getServices(refresh) {
+        var deferred = $q.defer();
+        var start = new Date().getTime();
+        return $http.get(config.endPoints.services, {
+            cache: cache
+        }).success(function (data) {
+            console.log('Services resolved: ' + (new Date().getTime() - start) + 'ms');
+            deferred.resolve(data);
+        });
+    }
+
+    function getShops(code, lat, lng, iso, refresh) {
+        var deferred = $q.defer();
+        var start = new Date().getTime();
+        var url = config.endPoints.shops + code + "/geolocation?latitude=" + lat + "&longitude=" + lng + "&iso3CountryCode=" + iso;
+        return $http.get(url, {
+            cache: cache
+        }).success(function (data) {
+            console.log('Shops resolved: ' + (new Date().getTime() - start) + 'ms');
             deferred.resolve(data);
         });
     }

@@ -51,6 +51,7 @@
   <ItemGroup>
     <Content Include="checkout.html" />
     <Content Include="index.html" />
+    <Content Include="pages\dropshop.html" />
     <Content Include="pages\parcels.html" />
     <Content Include="pages\order.html" />
     <Content Include="pages\overview.html" />
@@ -67,6 +68,7 @@
     <Content Include="script\checkout.min.js">
       <DependentUpon>checkout.js</DependentUpon>
     </Content>
+    <Content Include="script\controllers\dropshop.js" />
     <Content Include="script\controllers\quote.js" />
     <Content Include="script\controllers\overview.js" />
     <Content Include="script\controllers\token.js" />

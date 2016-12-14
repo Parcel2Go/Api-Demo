@@ -1,0 +1,35 @@
+﻿<div id="dropShopMapWrapper">
+    <div id="dropShopMenu" ng-show="quotes.length > 0">
+        <ul>
+            <li ng-repeat="quote in quotes" ng-class="{ active : quote === selectedQuote}" ng-click="selectQuote(quote)">
+                <img ng-src="{{quote.image}}" class="service-logo" title="{{ quote.name }}" />
+            </li>
+        </ul>
+    </div>
+    <div id="dropShopResults">
+        <div ng-show="selectedShop === null">
+            <ul class="results">
+                <li ng-repeat="marker in shops | limitTo : 24" ng-click="selectShop(marker)">
+                    <div class="service-logo" style="background-image: url('{{marker.quote.image}}')" title="{{ marker.quote.name }}"></div>
+                    <span>{{ marker.shop.Name }}</span>
+                    <span>{{ marker.shop.Address2 }}</span>
+                </li>
+            </ul>
+        </div>
+        <div ng-hide="selectedShop === null" class="result">
+            <span ng-click="closeShop()" class="close">X</span>
+            <div class="service-logo pull-left" style="background-image: url('{{selectedShop.quote.image}}')" title="{{ selectedShop.quote.name }}"></div>
+            <h1>{{selectedShop.shop.Name}}</h1>
+            <h2 ng-bind-html="selectedShop.shop.ConcatenatedTimes"></h2>
+            <h3>
+                {{selectedShop.shop.Address1}}<br />
+                {{selectedShop.shop.Address2}}<br />
+                {{selectedShop.shop.Postcode}}<br />
+            </h3>
+            <a href="https://www.parcel2go.com/order/parcel/new/{{selectedShop.quote.slug}}?utm_source=dropshopfinder.com&utm_medium=price">
+                <h4>Prices From &pound;{{selectedShop.quote.price}}</h4>
+            </a>
+        </div>
+    </div>
+    <div id="dropShopMap"></div>
+</div>
