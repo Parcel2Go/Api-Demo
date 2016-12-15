@@ -157,7 +157,8 @@ body.p2g {
         opacity: 1; }
       body.p2g #dropShopMapWrapper #dropShopMenu ul {
         padding: 0;
-        margin: 0; }
+        margin: 0;
+        display: inline-block; }
         body.p2g #dropShopMapWrapper #dropShopMenu ul li {
           display: inline-block;
           margin-left: 10px;
@@ -167,6 +168,9 @@ body.p2g {
             opacity: 1; }
           body.p2g #dropShopMapWrapper #dropShopMenu ul li img {
             width: 50px; }
+      body.p2g #dropShopMapWrapper #dropShopMenu input {
+        display: inline-block;
+        width: 300px; }
     body.p2g #dropShopMapWrapper #dropShopResults {
       position: absolute;
       top: 35px;
@@ -177,7 +181,7 @@ body.p2g {
       background-color: rgba(0, 0, 0, 0.5);
       color: #ffffff;
       border-radius: 30px;
-      max-height: calc(100% - 70px); }
+      height: calc(100% - 70px); }
       body.p2g #dropShopMapWrapper #dropShopResults .result .close {
         font-weight: bold;
         cursor: pointer;

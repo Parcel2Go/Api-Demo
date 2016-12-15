@@ -1,14 +1,5 @@
 ﻿var p2GoApp = angular.module('p2GoApp', ['ngRoute', 'ngAnimate', 'ngSanitize', 'angular-loading-bar', 'angular-cache', 'ui.bootstrap']);
 
-p2GoApp.config([
-    'cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-        cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-        cfpLoadingBarProvider
-            .spinnerTemplate =
-            '<div class="bg"><i class="fa fa-spinner animated infinite rotateIn"></i><span>Loading...</span></div>';
-    }
-]);
-
 p2GoApp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/',

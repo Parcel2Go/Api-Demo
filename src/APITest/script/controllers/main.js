@@ -1,12 +1,5 @@
 ﻿p2GoApp.controller('mainController', ['TokenService', 'OrderService', '$scope', '$location', 'p2gDataContext', function (TokenService, OrderService, $scope, $location, p2gDataContext) {
 
-    $scope.$on('cfpLoadingBar:started', function (event, data) {
-        $("#loading-bar-container").removeClass("hidden");
-    });
-    $scope.$on('cfpLoadingBar:completed', function (event, data) {
-        $("#loading-bar-container").addClass("hidden");
-    });
-
     $scope.signIn = function () {
         window.location.href = config.endPoints.auth +
                      "/connect/authorize?" +

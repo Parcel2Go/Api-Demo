@@ -1,7 +1,7 @@
 var config = {
     oAuthClientId: "demo",
     oAuthScope: "public-api%20payment",
-    oAuthReturnUrl: "http%3A%2F%2Fp2g-api-test.s3-website-eu-west-1.amazonaws.com%2F%23%2Ftoken%3F",
+    oAuthReturnUrl: "http%3A%2F%2Flocalhost%3A52981%2F%23%2Ftoken?",
     endPoints: {
         auth: "https://www.parcel2go.com/auth",
         quotes: "https://www.parcel2go.com/api/quotes",
@@ -14,15 +14,6 @@ var config = {
     }
 };
 var p2GoApp = angular.module('p2GoApp', ['ngRoute', 'ngAnimate', 'ngSanitize', 'angular-loading-bar', 'angular-cache', 'ui.bootstrap']);
-
-p2GoApp.config([
-    'cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-        cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
-        cfpLoadingBarProvider
-            .spinnerTemplate =
-            '<div class="bg"><i class="fa fa-spinner animated infinite rotateIn"></i><span>Loading...</span></div>';
-    }
-]);
 
 p2GoApp.config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -447,13 +438,6 @@ p2GoApp.controller('serviceModalController', function ($uibModalInstance, $scope
 });
 p2GoApp.controller('mainController', ['TokenService', 'OrderService', '$scope', '$location', 'p2gDataContext', function (TokenService, OrderService, $scope, $location, p2gDataContext) {
 
-    $scope.$on('cfpLoadingBar:started', function (event, data) {
-        $("#loading-bar-container").removeClass("hidden");
-    });
-    $scope.$on('cfpLoadingBar:completed', function (event, data) {
-        $("#loading-bar-container").addClass("hidden");
-    });
-
     $scope.signIn = function () {
         window.location.href = config.endPoints.auth +
                      "/connect/authorize?" +
@@ -624,6 +608,7 @@ p2GoApp.controller('dropshopController', ['$scope', '$location', '$q', 'p2gDataC
     $scope.shops = [];
     $scope.selectedShop = null;
     $scope.quotes = [];
+    $scope.searchQuery = null;
 
     var showLocation = function (p) {
         $scope.map.setCenter(new google.maps.LatLng(p.coords.latitude, p.coords.longitude));
@@ -636,19 +621,22 @@ p2GoApp.controller('dropshopController', ['$scope', '$location', '$q', 'p2gDataC
         var location = $scope.map.getCenter();
         if ($scope.selectedQuote === null) {
             var waits = [];
-            angular.forEach($scope.quotes, function (quote) {
-                waits.push($scope.searchType(quote, location));
-            });
-            $q.all(waits).then(function () {
-                deferred.resolve();
-            });
+            angular.forEach($scope.quotes,
+                function (quote) {
+                    waits.push($scope.searchType(quote, location));
+                });
+            $q.all(waits)
+                .then(function () {
+                    deferred.resolve();
+                });
         } else {
-            $scope.searchType($scope.selectedQuote, location).then(function () {
-                deferred.resolve();
-            });
+            $scope.searchType($scope.selectedQuote, location)
+                .then(function () {
+                    deferred.resolve();
+                });
         }
         return deferred.promise;
-    }
+    };
 
     $scope.searchType = function (quote, location) {
         var deferred = $q.defer();
@@ -694,9 +682,12 @@ p2GoApp.controller('dropshopController', ['$scope', '$location', '$q', 'p2gDataC
 
     $scope.clearMarkers = function () {
         angular.forEach($scope.shops, function (shop) {
-            shop.setMap(null);
+            if (!$scope.map.getBounds().contains(shop.getPosition())) {
+                shop.setMap(null);
+                var index = $scope.shops.indexOf(shop);
+                $scope.shops.splice(index, 1);
+            }
         });
-        $scope.shops = [];
     }
 
     $scope.selectShop = function (shop) {
@@ -717,6 +708,20 @@ p2GoApp.controller('dropshopController', ['$scope', '$location', '$q', 'p2gDataC
         mapTypeId: google.maps.MapTypeId.TERRAIN
     }
     $scope.map = new google.maps.Map(document.getElementById('dropShopMap'), mapOptions);
+
+    var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
+
+    google.maps.event.addListener(searchBox, 'places_changed', function () {
+        console.log(searchBox);
+        var places = searchBox.getPlaces();
+        var bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < places.length; i++) {
+            bounds.extend(places[i].geometry.location);
+        }
+        $scope.map.fitBounds(bounds);
+        $scope.map.setZoom(17);
+    });
+
     google.maps.event.addListener($scope.map, 'idle', function () {
         $scope.search();
     });
@@ -743,7 +748,7 @@ p2GoApp.controller('dropshopController', ['$scope', '$location', '$q', 'p2gDataC
                         image: quote.Service.Links.ImageSmall,
                         name: quote.Service.CourierName,
                         price: quote.TotalPrice,
-                        slug : quote.Service.Slug
+                        slug: quote.Service.Slug
                     });
                 }
             }

@@ -253,6 +253,7 @@ body.p2g {
             ul {
                 padding: 0;
                 margin: 0;
+                display: inline-block;
 
                 li {
                     display: inline-block;
@@ -269,6 +270,11 @@ body.p2g {
                     }
                 }
             }
+
+            input {
+                display: inline-block;
+                width: 300px;
+            }
         }
 
         #dropShopResults {
@@ -281,7 +287,7 @@ body.p2g {
             background-color: rgba(0,0,0,0.5);
             color: #ffffff;
             border-radius: 30px;
-            max-height: calc(100% - 70px);
+            height: calc(100% - 70px);
 
             .result {
                 .close {
