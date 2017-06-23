@@ -106,7 +106,7 @@ body.p2g {
     }
 
     .result {
-        height: 375px;
+        height: 430px;
 
         > .row {
             border-bottom: solid 1px #ccc;
@@ -131,6 +131,7 @@ body.p2g {
 
             img {
                 width: 100%;
+                max-width: 130px;
             }
         }
 
@@ -194,7 +195,7 @@ body.p2g {
             border-bottom: solid 1px #6c6c6c;
             margin-bottom: 10px;
             padding-bottom: 10px;
-            line-height: 35px;
+            line-height: 60px;
             font-size: 160%;
 
             .logo {

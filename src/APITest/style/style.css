@@ -64,7 +64,7 @@ body.p2g {
   body.p2g .well .parcel {
     margin: 10px 0; }
   body.p2g .result {
-    height: 375px; }
+    height: 430px; }
     body.p2g .result > .row {
       border-bottom: solid 1px #ccc; }
     body.p2g .result > .row:last-of-type {
@@ -78,7 +78,8 @@ body.p2g {
       body.p2g .result .title span {
         font-size: 12px; }
       body.p2g .result .title img {
-        width: 100%; }
+        width: 100%;
+        max-width: 130px; }
     body.p2g .result .price {
       margin-bottom: 20px;
       padding-bottom: 20px; }
@@ -118,7 +119,7 @@ body.p2g {
       border-bottom: solid 1px #6c6c6c;
       margin-bottom: 10px;
       padding-bottom: 10px;
-      line-height: 35px;
+      line-height: 60px;
       font-size: 160%; }
       body.p2g .sidebar .title .logo {
         float: right;

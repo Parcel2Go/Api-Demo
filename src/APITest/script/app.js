@@ -94,7 +94,7 @@ p2GoApp.factory('p2gDataContext', ['TokenService', '$http', '$q', 'CacheFactory'
 
     var data = {
         getShops: getShops,
-        getServices : getServices,
+        getServices: getServices,
         getCountryList: getCountryList,
         getQuote: getQuote,
         getOrder: getOrder,
@@ -272,7 +272,7 @@ p2GoApp.directive('address', ['TokenService', 'p2gDataContext', function (TokenS
                 }
             };
 
-            scope.setAddressOptions = function(addresses) {
+            scope.setAddressOptions = function (addresses) {
                 scope.data.State.AddressCollection = addresses;
                 for (var i = 0; i < scope.data.State.AddressCollection.length; i++) {
                     var item = scope.data.State.AddressCollection[i];
@@ -338,8 +338,8 @@ p2GoApp.directive('sidebar', [function (TokenService, p2gDataContext) {
                     var duration = moment.duration(end.diff(now));
                     $scope.$apply(function () {
                         $scope.cutOff = duration.hours() + ":" + duration.minutes() + ":" + duration.seconds();
-                    });           
-                },1000);
+                    });
+                }, 1000);
             }
         }
     };
@@ -348,7 +348,7 @@ p2GoApp.directive('counter', [function () {
     return {
         require: 'ngModel',
         link: function (scope, elem, attrs, ngModel) {
-            function counter(t,n) {
+            function counter(t, n) {
                 this.target = n;
                 this.max = t;
                 this.interval = t / 100;
@@ -367,13 +367,13 @@ p2GoApp.directive('counter', [function () {
                 if (ngModel.$modelValue) {
                     new counter(parseFloat(ngModel.$modelValue), elem);
                 }
-            });        
+            });
         }
     };
 }]);
 p2GoApp.controller('tokenController', ['TokenService', '$location', function (TokenService, $location) {
     var token = {
-        token : $location.search()['access_token'],
+        token: $location.search()['access_token'],
         expires: $location.search()['expires_in'],
         scope: $location.search()['scope']
     };
@@ -440,45 +440,18 @@ p2GoApp.controller('mainController', ['TokenService', 'OrderService', '$scope', 
 
     $scope.signIn = function () {
         window.location.href = config.endPoints.auth +
-                     "/connect/authorize?" +
-                     "response_type=token&" +
-                     "redirect_uri=" + config.oAuthReturnUrl + "&" +
-                     "client_id=" + config.oAuthClientId + "&" +
-                     "scope=" + config.oAuthScope + "&" +
-                     "state=oauth2";
+            "/connect/authorize?" +
+            "response_type=token&" +
+            "redirect_uri=" + config.oAuthReturnUrl + "&" +
+            "client_id=" + config.oAuthClientId + "&" +
+            "scope=" + config.oAuthScope + "&" +
+            "state=oauth2";
     };
 
     $scope.signOut = function () {
         TokenService.set(null);
         $scope.name = null;
     };
-
-    $scope.getName = function () {
-        setTimeout(function () {
-            p2gDataContext.getCustomerDetails()
-            .success(function (data) {
-                $scope.name = data.Forename;
-            })
-            .error(function (err) {
-                console.log(err);
-                $scope.signIn();
-            });
-        }, 1000);
-
-    };
-
-    TokenService.registerObserverCallback(function (token) {
-        if (token != null) {
-            $scope.getName();
-        }
-        else {
-            $location.path('/');
-        }
-    });
-
-    if (TokenService.isLoggedIn) {
-        $scope.getName();
-    }
 }]);
 p2GoApp.controller('parcelController', ['OrderService', '$scope', '$location', function (OrderService, $scope, $location) {
     $scope.order = OrderService.get();
@@ -495,9 +468,9 @@ p2GoApp.controller('parcelController', ['OrderService', '$scope', '$location', f
 
     $scope.nextStep = function () {
         $scope.order.Order =
-        {
-            Items: [{ Parcels: [] }]
-        };
+            {
+                Items: [{ Parcels: [] }]
+            };
 
         $scope.order.Order.Items[0].Id = generateId();
         $scope.order.Order.Items[0].Service = $scope.order.Service.Service.Slug;
@@ -585,20 +558,20 @@ p2GoApp.controller('overviewController', ['OrderService', '$scope', '$location',
     $scope.pay = function () {
         $scope.loading = true;
         p2gDataContext.pay($scope.order.Overview.Links.PayWithPrePay)
-        .success(function (data) {
-            $scope.order.Payment = data;
-            OrderService.set($scope.order);
-            $scope.loading = false;
-        });
+            .success(function (data) {
+                $scope.order.Payment = data;
+                OrderService.set($scope.order);
+                $scope.loading = false;
+            });
     };
 
     $scope.labels = function () {
         $scope.loading = true;
         p2gDataContext.labels($scope.order.Payment.Links[0].Link)
-        .success(function (data) {
-            $scope.loading = false;
-            window.location = "data:image/png;base64," + data.Base64EncodedLabels[0];
-        });
+            .success(function (data) {
+                $scope.loading = false;
+                window.location = "data:image/png;base64," + data.Base64EncodedLabels[0];
+            });
     };
 }]);
 p2GoApp.controller('dropshopController', ['$scope', '$location', '$q', 'p2gDataContext', function ($scope, $location, $q, p2gDataContext) {
